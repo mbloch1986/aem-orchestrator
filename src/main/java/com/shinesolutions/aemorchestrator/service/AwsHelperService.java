@@ -288,12 +288,17 @@ public class AwsHelperService {
      */
     public void createContentHealthCheckAlarm(String alarmName, String alarmDescription,  
         String publishInstanceId, String namespace, String topicArn) {
+        String publishStackPrefix = getTags(publishInstanceId).get(InstanceTags.STACK_PREFIX.getTagName());
+
         amazonCloudWatchClient.putMetricAlarm(new PutMetricAlarmRequest()
             .withAlarmName(alarmName)
             .withAlarmDescription(alarmDescription)
             .withDimensions(new Dimension()
                 .withName(InstanceTags.PAIR_INSTANCE_ID.getTagName())
-                .withValue(publishInstanceId))
+                .withValue(publishInstanceId),
+                new Dimension()
+                .withName(InstanceTags.STACK_PREFIX.getTagName())
+                .withValue(publishStackPrefix))
             .withMetricName("contentHealthCheck")
             .withNamespace(namespace)
             .withPeriod(60)

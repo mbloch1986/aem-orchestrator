@@ -9,6 +9,7 @@ public enum InstanceTags {
     AEM_AUTHOR_HOST("AuthorHost"),
     SNAPSHOT_ID("SnapshotId"),
     SNAPSHOT_TYPE("SnapshotType"),
+    STACK_PREFIX("StackPrefix"),
     NAME("Name");
 
     private final String tagName;

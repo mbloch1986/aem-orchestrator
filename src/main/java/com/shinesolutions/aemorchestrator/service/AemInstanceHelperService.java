@@ -55,9 +55,6 @@ public class AemInstanceHelperService {
 
     @Value("${aws.snapshot.tags}")
     private List<String> tagsToApplyToSnapshot;
-    
-    @Value("${aws.cloudformation.stackName.publishDispatcher}")
-    private String awsPublishDispatcherStackName;
 
     @Resource
     private EnvironmentValues envValues;
@@ -365,7 +362,7 @@ public class AemInstanceHelperService {
             getContentHealthCheckAlarmName(instanceId), 
             "Content Health Alarm for Publish Instance " + instanceId,
             instanceId,
-            awsPublishDispatcherStackName,
+            "AEM",
             envValues.getTopicArn());
     }
     
